@@ -5,10 +5,19 @@
   <meta charset="utf-8">
 
   <link rel="stylesheet" type="text/css" href="index.css">
+
+  <script src="lib/GridLayout.js"></script>
+  <script src="lib/GridTracker.js"></script>
+  <script src="lib/main.js"></script>
 </head>
 <body>
   <div class="container">
-    <div class="layout"></div>
+    <div id="control">
+      <button id="add" onclick="addText()" >Add text</button>
+      <span>- or - </span>
+      <input id="input" type="file" accept="image/*" onchange="handleFiles(this.files)">
+    </div>
+    <div id="layout"></div>
   </div>
 </body>
 </html>

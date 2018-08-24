@@ -8,6 +8,7 @@ var app = express();
 
 //serve static
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/lib', express.static(path.join(__dirname, 'lib')));
 
 app.get("/", function (req, res, next) {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
