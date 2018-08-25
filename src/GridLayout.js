@@ -1,5 +1,5 @@
 class GridLayout {
-  constructor(columns=15,rows=10){
+  constructor(rows=10,columns=15){
     this._rows = rows;
     this._columns = columns;
     this._padding = 2;
@@ -26,6 +26,12 @@ class GridLayout {
   get columns(){
     return this._columns;
   }
+  get dimensions(){
+    return {
+      columns: this._columns,
+      rows: this._rows
+    }
+  }
   get gridGap() {
     return this._gap;
   }
@@ -49,7 +55,7 @@ class GridLayout {
     style.gridGap = this._gap+"px"
   }
 
-  fill(node, color){
+  fill(node, color='silver'){
     let children = [].slice.call(node.childNodes);
     children.forEach((i)=>{
       if (i.dataset.type === 'fill') i.remove();
@@ -58,29 +64,31 @@ class GridLayout {
       let div = document.createElement('div');
       div.style.backgroundColor = color;
       div.setAttribute('data-type','fill');
-      node.append(div);
+      node.prepend(div);
     }
   }
 
   //inserts a DOM element in the parent node
   //x,y,w,h dimensions are in grid units
   //uses flex grid
-  insert(parent,type,content,x,y,w,h){
+  insert(parent,type='text',content='null',y=1,x=1,h=1,w=1){
     let wrapper = document.createElement('div');
     //uses flex grid-area
-    wrapper.style.gridArea = [y,x,y+h,x+w].join(' / ');
+    wrapper.style.gridArea = [y,x,'span '+h,'span '+w].join(' / ');
+    wrapper.style.cursor = "move";
+    wrapper.style.position = "relative";
+    wrapper.className = "GridLayout-item";
     let elem = document.createElement(type);
-    elem.style = Object.assign(
-      elem.style,
-      w > h ? {width: "100%", height: "auto"} : {width: "auto", height: "100%"}
-    );
+    elem.style.height = "100%";
     if (type==='img'){
       elem.src = content;
     } else {
       elem.innerHTML = content;
+      elem.style.width = "100%";
     }
     wrapper.append(elem);
     parent.append(wrapper);
+    return elem;
   }
 
 }

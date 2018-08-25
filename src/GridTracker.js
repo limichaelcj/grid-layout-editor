@@ -4,6 +4,13 @@ class GridTracker {
     this._ends = []; //bottom-right points
   }
 
+  get anchors() {
+    return this._anchors;
+  }
+  get ends() {
+    return this._ends;
+  }
+
   track(node, grid){
     //reset tracker's data
     this._anchors = [];

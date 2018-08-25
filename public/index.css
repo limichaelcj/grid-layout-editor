@@ -20,7 +20,10 @@ body {
 }
 
 #control {
-  padding: 2px;
+  margin: 10px;
+}
+#control > * {
+  margin: 5px;
 }
 
 #layout {
@@ -29,6 +32,25 @@ body {
   outline: 2px solid #555;
   background-color: #555;
   border: 1px solid #222;
+}
+
+.resizer {
+  opacity: 0;
+  position: absolute;
+  background-color: dodgerblue;
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  font-size: 12px;
+  color: ivory;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.GridLayout-item:hover .resizer {
+  opacity: 1;
 }
 
 /* media queries */
