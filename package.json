@@ -1,0 +1,32 @@
+{
+  "name": "grid-layout-editor",
+  "version": "1.0.0",
+  "description": "A layout system using using HTML5 grid system.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "start": "start chrome http://localhost:3000/ && node index.js",
+    "build": "babel server/server.js -o index.js && babel src -d lib",
+    "refresh": "babel server/server.js -o index.js && babel src -d lib && node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mcli830/grid-layout.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mcli830/grid-layout/issues"
+  },
+  "homepage": "https://github.com/mcli830/grid-layout#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0"
+  }
+}
