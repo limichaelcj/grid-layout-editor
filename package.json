@@ -1,5 +1,5 @@
 {
-  "name": "grid-layout",
+  "name": "grid-layout-editor",
   "version": "1.0.0",
   "description": "A layout system using using HTML5 grid system.",
   "main": "index.js",
@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/mcli830/grid-layout#readme",
   "dependencies": {
+    "body-parser": "^1.18.3",
     "express": "^4.16.3"
   },
   "devDependencies": {

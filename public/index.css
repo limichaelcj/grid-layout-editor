@@ -10,6 +10,7 @@ body {
   align-items: center;
 }
 
+
 .container {
   height: 100%;
   width: 70%;
@@ -20,10 +21,22 @@ body {
 }
 
 #control {
+  display: flex;
+  flex-direction: row;
   margin: 10px;
 }
-#control > * {
-  margin: 5px;
+#control > div {
+  margin: 0 20px;
+}
+#control > div > * {
+  margin: 2px;
+}
+
+.input-grid {
+  width: 50px;
+}
+.input-file {
+  width: 150px;
 }
 
 #layout {
@@ -32,6 +45,13 @@ body {
   outline: 2px solid #555;
   background-color: #555;
   border: 1px solid #222;
+  overflow: hidden;
+}
+
+#layout span {
+  font-family: monospace;
+  font-size: 16px;
+  color: ivory;
 }
 
 .resizer {

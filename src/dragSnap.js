@@ -6,37 +6,36 @@ function applyDragSnap(elem,parent,grid,points){
     //get bounds
     let bounds = parent.getBoundingClientRect();
     //get cursor position
-    var cx = e.pageX - bounds.x;
-    var cy = e.pageY - bounds.y;
+    var cx = e.pageX;
+    var cy = e.pageY;
     //get anchor offset
     var ax = cx - elem.parentNode.offsetLeft;
     var ay = cy - elem.parentNode.offsetTop;
 
     elem.style.boxShadow = "0 0 5px cyan";
 
-    elem.onmousemove = dragElement;
-    elem.onmouseup = closeDrag;
-    elem.onmouseleave = closeDrag;
+    document.onmousemove = dragElement;
+    document.onmouseup = closeDrag;
 
     function dragElement(e){
       e = e || window.event;
       e.preventDefault();
       //set new cursor position;
-      cx = e.pageX - bounds.x;
-      cy = e.pageY - bounds.y;
+      cx = e.pageX;
+      cy = e.pageY;
       //snap to grid snap points
       let anchor = {
         x: cx - ax,
         y: cy - ay
       };
+      //uses global tracker
       let snap = findClosestPoint2D(anchor,points,grid);
       let prev = elem.parentNode.style.gridArea;
       elem.parentNode.style.gridArea = prev.replace(/^\s*\d+\s*\/\s*\d+/, snap.row + ' / ' + snap.col);
     }
     function closeDrag(){
-      elem.onmousemove = null;
-      elem.onmouseup = null;
-      elem.onmouseleave = null;
+      document.onmousemove = null;
+      document.onmouseup = null;
       elem.style.boxShadow = "";
     }
   }

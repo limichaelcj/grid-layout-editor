@@ -11,14 +11,28 @@
   <script src="lib/dragSnap.js"></script>
   <script src="lib/GridLayout.js"></script>
   <script src="lib/GridTracker.js"></script>
+  <script src="lib/helpers.js"></script>
+  <!-- load main.js before handlers bc it initiates GridLayout and GridTracker constants -->
   <script src="lib/main.js"></script>
+  <script src="lib/handlers.js"></script>
 </head>
 <body id="body">
   <div class="container">
     <div id="control">
-      <button id="add" onclick="addText()" >Add text</button>
-      <span>- or - </span>
-      <input id="input" type="file" accept="image/*" onchange="handleFiles(this.files)">
+      <div>
+        <span>#rows</span>
+        <input class="input-grid" type="number" step="1" min="4" value="20" onchange="resizeGrid(this.value, 'row')">
+        <span>#columns</span>
+        <input class="input-grid" type="number" step="1" min="4" value="35" onchange="resizeGrid(this.value, 'col')">
+      </div>
+      <div>
+        <button id="add" onclick="addText()" >Add text</button>
+        <span>- or - </span>
+        <input id="input" class="input-file" type="file" accept="image/*" onchange="handleFiles(this.files)">
+      </div>
+      <div>
+        <button id="save" onclick="saveLayout(grid)">Save Layout</button>
+      </div>
     </div>
     <div id="layout"></div>
   </div>
