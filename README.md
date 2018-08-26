@@ -1,2 +1,2 @@
-# grid-layout
-A layout system using using HTML5 grid system.
+# grid-layout-editor
+A visual editor to design layouts using the GridLayout repo.
