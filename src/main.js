@@ -1,30 +1,37 @@
-const grid = new GridLayout(35,20);
+const grid = new GridLayout(20,35);
 const tracker = new GridTracker();
 
 document.addEventListener('DOMContentLoaded', ()=>{
 
+  const layout = document.getElementById('layout'); //parent
 
+  document.getElementById('body').onresize = ()=>{
+    tracker.track(layout,grid);
+  };
 
-  let layout = document.getElementById('layout');
+  resetGrid(grid,layout,tracker);
 
-  //setup grid in 'layout'
-  grid.assignTo(layout);
-  grid.fill(layout,'#222');
-
-  //setup tracker
-  tracker.track(layout,grid);
-
-
-  //html page handlers
 
 });
 
-function handleFiles(files){
-  let reader = new FileReader();
-  var data;
-  reader.onload = (e)=>{
-    data = e.target.result;
-    grid.insert(layout,'img',data, 5,5,6,4);
-  }
-  reader.readAsDataURL(files[0]);
+//batch
+
+function resetGrid(grid,parent,tracker){
+  grid.assignTo(parent);
+  grid.fill(parent, '#222');
+  tracker.track(parent,grid);
+  //resync insert drag snap
+  let inserts = getInserts(parent);
+  inserts.forEach((i)=>{
+    //displace fills
+    let style = i.style.gridArea.split(' / ');
+    let col = getSpan(style[2]);
+    let row = getSpan(style[3]);
+    let displacement = col * row;
+    for(let i = 0; i < displacement; i++){
+      parent.firstChild.remove();
+    }
+    //renew onmousemove drag
+    applyDragSnap(i,parent,grid.dimensions, tracker.anchors);
+  });
 }
